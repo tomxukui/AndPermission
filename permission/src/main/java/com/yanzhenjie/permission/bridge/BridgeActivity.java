@@ -185,6 +185,7 @@ public final class BridgeActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (isFinishing()) return;
         Messenger.send(this, mActionSuffix);
         finish();
     }
@@ -197,6 +198,7 @@ public final class BridgeActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (isFinishing()) return;
         Messenger.send(this, mActionSuffix);
         finish();
     }
