@@ -1,17 +1,31 @@
-apply plugin: rootProject.ext.plugins.library
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.tomxukui'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 109
+        versionName "2.0.4"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 
     resourcePrefix 'permission'
 }
 
 dependencies {
-    api rootProject.ext.dependencies.fragment
+    compileOnly 'androidx.appcompat:appcompat:1.2.0'
 }
